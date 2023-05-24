@@ -1,0 +1,79 @@
+<div class="container m-5">
+  <form (ngSubmit)="onSubmit()" [formGroup]="onForm">
+    <div class="mb-3 lead">
+      <div>
+        <label for="identifiant" class="form-label">Identifiant * </label>
+        <input type="text" id="identifiant" formControlName="identifiant" class="form-control">
+      </div>
+      <div
+        *ngIf="(onForm.controls.identifiant.touched || submitted) && (onForm.controls.titre.errors && onForm.controls.identifiant.errors)">
+        <span *ngIf="onForm.controls.titre.errors?.['required'] && onForm.controls.identifiant.errors?.['required']">
+          L'un des deux champs 'Identifiant' ou 'Titre' doit être renseigné !
+        </span>
+      </div>
+    </div>
+
+    <div class="mb-3 lead">
+      <div>
+        <label for="titre" class="form-label">Titre * </label>
+        <input type="text" id="titre" formControlName="titre" class="form-control">
+      </div>
+      <div
+        *ngIf="(onForm.controls.titre.touched || submitted) && (onForm.controls.titre.errors && onForm.controls.identifiant.errors)">
+        <span *ngIf="onForm.controls.titre.errors?.['required'] && onForm.controls.identifiant.errors?.['required']">
+          L'un des deux champs 'Identifiant' ou 'Titre' doit être renseigné !
+        </span>
+      </div>
+    </div>
+
+    <div class="mb-3 lead">
+      <div>
+        <label for="type" class="form-label">Type * </label>
+        <select id="type" formControlName="type" class="form-control">
+          <option value="film" class="form-label">Film</option>
+          <option value="serie" class="form-label">Séries</option>
+          <option value="episode" class="form-label">Episode</option>
+        </select>
+      </div>
+      <div *ngIf="(onForm.controls.type.touched || submitted) && (onForm.controls.type.errors)">
+        <span *ngIf="onForm.controls.type.errors?.['required']">
+          Le champs titre est requis !
+        </span>
+      </div>
+    </div>
+
+    <div class="mb-3 lead">
+      <div>
+        <label for="anneeDeSortie" class="form-label">Année de sortie *</label>
+        <input type="number" id="anneeDeSortie" formControlName="anneeDeSortie" class="form-control">
+      </div>
+      <div *ngIf="(onForm.controls.anneeDeSortie.touched || submitted) && (onForm.controls.anneeDeSortie.errors)">
+        <span *ngIf="onForm.controls.anneeDeSortie.errors?.['required']">
+          Le champs Année de sortie est requis !
+        </span>
+        <span *ngIf="onForm.controls.anneeDeSortie.errors?.['invalidDate']">
+          L'année doit être entre {{dateInYearMinimal}} et {{currentDateInYear}}
+        </span>
+      </div>
+    </div>
+
+
+    <div class="mb-3 lead">
+      <label for="fiche" class="form-label">Fiche *</label>
+      <select class="form-control" formControlName="fiche" disbaled>
+        <!-- <option *ngFor="let value of optionsFiche" [value]="value">{{value}}</option> -->
+        <option value="complete">Complète</option>
+        <option value="courte">Courte</option>
+      </select>
+      <div *ngIf="(onForm.controls.fiche.touched || submitted) && (onForm.controls.fiche.errors)">
+        <span *ngIf="onForm.controls.fiche.errors?.['required']">
+          Le champs fiche est requis !
+        </span>
+      </div>
+    </div>
+
+
+    <button class="btn btn-secondary" type="reset">Annuler</button>
+    <button class="btn btn-primary" type="submit">Envoyer !</button>
+  </form>
+</div>
