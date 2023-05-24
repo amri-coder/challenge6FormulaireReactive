@@ -60,7 +60,7 @@
 
     <div class="mb-3 lead">
       <label for="fiche" class="form-label">Fiche *</label>
-      <select class="form-control" formControlName="fiche" disbaled>
+      <select class="form-control" [disabled]="!onForm.controls.identifiant.valid" formControlName="fiche">
         <!-- <option *ngFor="let value of optionsFiche" [value]="value">{{value}}</option> -->
         <option value="complete">Complète</option>
         <option value="courte">Courte</option>
