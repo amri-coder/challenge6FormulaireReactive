@@ -42,9 +42,7 @@ export class SearchMovieComponent {
     }
   }
   ficheInitialisation() {
-    this.onForm.patchValue({
-      fiche: 'courte',
-    });
+    this.onForm.controls.fiche.patchValue('courte');
   }
   onSubmit() {
     this.submitted = true;
